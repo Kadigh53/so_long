@@ -1,46 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 20:58:08 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/08 17:41:13 by aaoutem-         ###   ########.fr       */
+/*   Created: 2022/10/11 14:28:22 by aaoutem-          #+#    #+#             */
+/*   Updated: 2023/02/08 17:49:07 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-void	*ft_memcpy(void *dst, void *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (!src && !dst)
-		return (NULL);
-	while (i < n)
-	{
-		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
-		i++;
-	}
-	return (dst);
-}
+#include "so_long.h"
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
-{
+{	
 	char			*p;
 	unsigned int	j;
 	size_t			k;
@@ -64,25 +37,4 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	else
 		return (NULL);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*p;
-	size_t	i;
-
-	i = ft_strlen(s1) + ft_strlen(s2);
-	if (!s1 && !s2)
-		return (NULL);
-	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!p)
-		return (NULL);
-	else
-	{
-		ft_memcpy(p, s1, ft_strlen(s1) * sizeof(char));
-		ft_memcpy(p + ft_strlen(s1), s2, ft_strlen(s2) * sizeof(char));
-		p[i] = '\0';
-		free(s1);
-		return (p);
-	}
 }

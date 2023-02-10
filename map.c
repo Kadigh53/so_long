@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 18:49:08 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/06 19:43:44 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:11:56 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ char	*map_parsing(char *av)
 	}
 	if (!borders_checking(buffer))
 		return (NULL);
+	close(fd);
 	return ((void *)1);
 }

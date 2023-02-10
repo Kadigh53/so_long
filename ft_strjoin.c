@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 20:58:08 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/08 17:41:13 by aaoutem-         ###   ########.fr       */
+/*   Created: 2022/10/11 16:30:47 by aaoutem-          #+#    #+#             */
+/*   Updated: 2023/02/08 15:20:08 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#include "so_long.h"
 
 void	*ft_memcpy(void *dst, void *src, size_t n)
 {
@@ -39,42 +27,15 @@ void	*ft_memcpy(void *dst, void *src, size_t n)
 	return (dst);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	char			*p;
-	unsigned int	j;
-	size_t			k;
-
-	j = 0;
-	k = ft_strlen(s) - start + 1;
-	if (len < (size_t)(ft_strlen(s) - start))
-		k = len + 1;
-	if (start < (size_t)ft_strlen(s) && *s != 0)
-	{
-		p = malloc(k * sizeof(char));
-		if (!p)
-			return (NULL);
-		while ((s + start)[j] && j < len)
-		{
-			p[j] = (s + start)[j];
-			j++;
-		}
-		p[j] = '\0';
-		return (p);
-	}
-	else
-		return (NULL);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*p;
 	size_t	i;
 
 	i = ft_strlen(s1) + ft_strlen(s2);
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
-	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char) + 1);
 	if (!p)
 		return (NULL);
 	else

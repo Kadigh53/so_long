@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/08 21:30:02 by aaoutem-         ###   ########.fr       */
+/*   Created: 2022/10/05 22:00:23 by aaoutem-          #+#    #+#             */
+/*   Updated: 2023/02/08 15:19:36 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <mlx.h>
-# include "get_next_line.h"
+size_t	ft_strlen(char *s)
+{
+	size_t	i;
 
-char	*get_next_line(int fd);
-char	**ft_split(char *s, char c);
-// char	*ft_substr(char *s, unsigned int start, size_t len);
-// char	*ft_strjoin(char *s1, char *s2);
-
-#endif
+	i = 0;
+	if (!s)
+		return(0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

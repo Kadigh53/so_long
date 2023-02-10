@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 20:57:56 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/06 19:44:46 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:41:05 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 0
+#  define BUFFER_SIZE 1
 # endif
 
 # ifndef FDMAX
