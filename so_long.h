@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/08 21:30:02 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:59:08 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <mlx.h>
 # include "get_next_line.h"
 
+char	*map_parsing(char *av);
+void	drawing(char *av[]);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
 // char	*ft_substr(char *s, unsigned int start, size_t len);

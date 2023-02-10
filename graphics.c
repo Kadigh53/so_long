@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/10 17:24:52 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:52:34 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ void	drawing(char *av[])
 	while(map[l])
 		l++;
 	mlx = mlx_init();
-	win_ptr = mlx_new_window(mlx,Le*50,l*50,"KADIGH'S MAZ");
-	
+	win_ptr = mlx_new_window(mlx, Le*50, l*50, "KADIGH'S MAZ");
 	while(x<Le) // && map[x]
 	{
-		// mlx_put_image_to_window(mlx, win_ptr,img,i*50,0);
 		y = 0;
 		while(y<l)
 		{
@@ -89,10 +87,5 @@ void	drawing(char *av[])
 
 int main(int ac, char *av[])
 {
-	// char	**p=map_instr(av);
-	// int i=0;
-	// while(p[i])
-	// 	i++;
-	// printf("%d \n", i);
 	drawing(av);
 }
