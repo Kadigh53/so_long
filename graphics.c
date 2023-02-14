@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/14 21:52:13 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/14 23:51:47 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,27 @@ char	**map_instr(char *av[])
 	return (ft_split(map0,'\n'));
 }
 
-// left = 0
-// right = 2
-// up = 13
-// down = 1
-//esc 53
-
-
-int hook_f(int key, t_data *param)
+void	move_left(t_data *data)
 {
-	if (!key)
+	if (/*player coordinates */)
+}
+
+int	hook_f(int key, t_data *param)
+{
+	if (!key && !param)
 		exit(0);
 	ft_putnbr_fd(key, 1);
 	write(1, "\n", 1);
-	if (key == 65307)
-		printf("exit;");
+	if (key == 53)
+		exit(0);
 	if (key == 0)
-		printf("left:");
-	if (key == 2)
-		printf("right;");
+		move_left(param);
+	// if (key == 2)
+	// 	move_right();
+	// if (key == 1)
+	// 	move_down();
+	// if (key == 13)
+	// 	move_up();
 	return 0;
 }
 
@@ -69,37 +71,9 @@ void	drawing(char *av[])
 	while(data->map[data->l])
 		data->l++;
 	data->mlx = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx, data->Le*50, data->l*50, "KADIGH'S MAZ");
-	while(data->x<data->Le) // && map[x]
-	{
-		data->y = 0;
-		while(data->y<data->l)
-		{
-			if (data->map[data->y][data->x] == '1')
-			{
-				data->img = mlx_xpm_file_to_image(data->mlx, "./cherjam_hmar.xpm", &data->img_width, &data->img_height);
-				mlx_put_image_to_window(data->mlx, data->win_ptr,data->img,data->x*50,data->y*50);
-			}
-			else if (data->map[data->y][data->x] == 'C')
-			{
-				data->img = mlx_xpm_file_to_image(data->mlx, "./dollar_collectibles.xpm", &data->img_width, &data->img_height);
-				mlx_put_image_to_window(data->mlx, data->win_ptr,data->img,data->x*50,data->y*50);
-			}
-			else if (data->map[data->y][data->x] == 'E')
-			{
-				data->img = mlx_xpm_file_to_image(data->mlx, "./bank_exit.xpm", &data->img_width, &data->img_height);
-				mlx_put_image_to_window(data->mlx, data->win_ptr,data->img,data->x*50,data->y*50);
-			}
-			else if (data->map[data->y][data->x] == 'P')
-			{
-				data->img = mlx_xpm_file_to_image(data->mlx, "./MnP.xpm", &data->img_width, &data->img_height);
-				mlx_put_image_to_window(data->mlx, data->win_ptr,data->img,data->x*50,data->y*50);
-			}
-			data->y++;
-		}
-		data->x++;
-	}
-	mlx_hook(data->win_ptr, 17, 0, hook_f, NULL);
+	data->win_ptr = mlx_new_window(data->mlx, data->Le*50, data->l*50, "WINDW");
+	render(&data);
+	// mlx_hook(data->win_ptr, 17, 0, hook_f, NULL);
 	mlx_hook(data->win_ptr, 2, 0, hook_f, &data);
 	mlx_loop(data->mlx);
 }
