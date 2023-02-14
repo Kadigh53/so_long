@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/13 23:21:15 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/14 21:52:13 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,19 @@ char	**map_instr(char *av[])
 	return (ft_split(map0,'\n'));
 }
 
+// left = 0
+// right = 2
+// up = 13
+// down = 1
+//esc 53
 
-typedef struct data 
-{
-	void	*mlx;
-	void	*win_ptr;
-	void	*img;
-	int		img_width;
-	int		img_height;
-	char	**map;
-	int		x;
-	int		y;
-	int		l;
-	int		Le;
-} t_data;
 
-int hook_f(int key, void *param)
+int hook_f(int key, t_data *param)
 {
-	// printf("%d", (t_data *)param->x);
-	(t_data *)param;
-	printf("zxz");
+	if (!key)
+		exit(0);
+	ft_putnbr_fd(key, 1);
+	write(1, "\n", 1);
 	if (key == 65307)
 		printf("exit;");
 	if (key == 0)
@@ -106,7 +99,8 @@ void	drawing(char *av[])
 		}
 		data->x++;
 	}
-	mlx_hook(data->win_ptr,2,0,hook_f, &data);
+	mlx_hook(data->win_ptr, 17, 0, hook_f, NULL);
+	mlx_hook(data->win_ptr, 2, 0, hook_f, &data);
 	mlx_loop(data->mlx);
 }
 
@@ -114,3 +108,19 @@ int main(int ac, char *av[])
 {
 	drawing(av);
 }
+
+
+
+// typedef struct data 
+// {
+// 	void	*mlx;
+// 	void	*win_ptr;
+// 	void	*img;
+// 	int		img_width;
+// 	int		img_height;
+// 	char	**map;
+// 	int		x;
+// 	int		y;
+// 	int		l;
+// 	int		Le;
+// } t_data;
