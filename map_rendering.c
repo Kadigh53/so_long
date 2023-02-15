@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:03:53 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 18:52:06 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:02:48 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void    put_image(t_data **data, char *image_path)
 	mlx_put_image_to_window((*data)->mlx, (*data)->win_ptr, (*data)->img,
 							 (*data)->x * 50, (*data)->y * 50);
 }
+
 void render(t_data **data)
 {
 	(*data)->x = 0;
-	while((*data)->x<(*data)->Le) // && map[x]
+	while((*data)->x<(*data)->Le)
 	{
 		(*data)->y = 0;
 		while((*data)->y<(*data)->l)
@@ -40,7 +41,6 @@ void render(t_data **data)
 				(*data)->cor[1] = (*data)->x;
 				put_image(data, "./MnP.xpm");
 			}
-			ft_putnbr_fd((*data)->y,1);
 			(*data)->y++;
 		}
 		(*data)->x++;

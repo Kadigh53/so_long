@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 19:07:51 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:25:40 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct data
 	int		y;
 	int		l;
 	int		Le;
-	int	cor[2];
+	int		cor[2];
+	int		Count;
 } t_data;
 
 char	*map_parsing(char *av);
