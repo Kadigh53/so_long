@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 18:52:36 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:07:31 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ char	**map_instr(char *av[])
 	return (ft_split(map0,'\n'));
 }
 
-void	move_left(t_data **data)
-{
-	int i =0;
-	while((*data)->map[i])
-	{
-		ft_putstr_fd((*data)->map[i],1);
-		write(1,"\n",1);
-		i++;
-	}
-	if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == '1' || 
-		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'E')
-		return;
-	else //if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'C')
-	{
-		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] = 'P';
-		(*data)->map[(*data)->cor[0]][(*data)->cor[1]] = '0';
-		(*data)->cor[1] -= 1;
-	}
-	mlx_clear_window((*data)->mlx,(*data)->win_ptr);
-	render(data);
-}
+// void	move_left(t_data **data)
+// {
+// 	int i =0;
+// 	while((*data)->map[i])
+// 	{
+// 		ft_putstr_fd((*data)->map[i],1);
+// 		write(1,"\n",1);
+// 		i++;
+// 	}
+// 	if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == '1' || 
+// 		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'E')
+// 		return;
+// 	else //if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'C')
+// 	{
+// 		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] = 'P';
+// 		(*data)->map[(*data)->cor[0]][(*data)->cor[1]] = '0';
+// 		(*data)->cor[1] -= 1;
+// 	}
+// 	mlx_clear_window((*data)->mlx,(*data)->win_ptr);
+// 	render(data);
+// }
 
 int	hook_f(int key, t_data *param)
 {
@@ -66,12 +66,12 @@ int	hook_f(int key, t_data *param)
 		exit(0);
 	if (key == 0)
 		move_left(&param);
-	// if (key == 2)
-	// 	move_right();
-	// if (key == 1)
-	// 	move_down();
-	// if (key == 13)
-	// 	move_up();
+	if (key == 2)
+		move_right(&param);
+	if (key == 1)
+		move_down(&param);
+	if (key == 13)
+		move_up(&param);
 	return 0;
 }
 

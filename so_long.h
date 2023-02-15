@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 18:54:27 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:07:51 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,23 @@ typedef struct data
 } t_data;
 
 char	*map_parsing(char *av);
+
 void	drawing(char *av[]);
 void    render(t_data **data);
+
+void	move_left(t_data **data);
+void	move_right(t_data **data);
+void	move_down(t_data **data);
+void	move_up(t_data **data);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
-// char	*ft_substr(char *s, unsigned int start, size_t len);
-// char	*ft_strjoin(char *s1, char *s2);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
+
+
+
+
+// char	*ft_substr(char *s, unsigned int start, size_t len);
+// char	*ft_strjoin(char *s1, char *s2);
 
 #endif
