@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/14 23:51:47 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:52:36 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,26 @@ char	**map_instr(char *av[])
 	return (ft_split(map0,'\n'));
 }
 
-void	move_left(t_data *data)
+void	move_left(t_data **data)
 {
-	if (/*player coordinates */)
+	int i =0;
+	while((*data)->map[i])
+	{
+		ft_putstr_fd((*data)->map[i],1);
+		write(1,"\n",1);
+		i++;
+	}
+	if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == '1' || 
+		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'E')
+		return;
+	else //if ((*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] == 'C')
+	{
+		(*data)->map[(*data)->cor[0]][(*data)->cor[1] - 1] = 'P';
+		(*data)->map[(*data)->cor[0]][(*data)->cor[1]] = '0';
+		(*data)->cor[1] -= 1;
+	}
+	mlx_clear_window((*data)->mlx,(*data)->win_ptr);
+	render(data);
 }
 
 int	hook_f(int key, t_data *param)
@@ -48,7 +65,7 @@ int	hook_f(int key, t_data *param)
 	if (key == 53)
 		exit(0);
 	if (key == 0)
-		move_left(param);
+		move_left(&param);
 	// if (key == 2)
 	// 	move_right();
 	// if (key == 1)
@@ -63,18 +80,19 @@ void	drawing(char *av[])
 	t_data *data;
 
 	data = (t_data *)malloc(sizeof(t_data));
-	data->x = 0;
-	data->y = 0;
+	// data->x = 0;
+	// data->y = 0;
 	data->map = map_instr(av);
 	data->l = 0;
 	data->Le = ft_strlen(data->map[0]);
 	while(data->map[data->l])
 		data->l++;
 	data->mlx = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx, data->Le*50, data->l*50, "WINDW");
+	data->win_ptr = mlx_new_window(data->mlx,data->Le*50,data->l*50, "WINDW");
 	render(&data);
-	// mlx_hook(data->win_ptr, 17, 0, hook_f, NULL);
-	mlx_hook(data->win_ptr, 2, 0, hook_f, &data);
+	// mlx_hookdata->win_ptr, 17, 0, hook_f, NULL);
+	// ft_putstr_fd();
+	mlx_hook(data->win_ptr, 2, 0, hook_f, data);
 	mlx_loop(data->mlx);
 }
 
@@ -85,7 +103,7 @@ int main(int ac, char *av[])
 
 
 
-// typedef struct data 
+// typedef structdata 
 // {
 // 	void	*mlx;
 // 	void	*win_ptr;
