@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/16 18:45:32 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:15:13 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	**map_instr(char *av[])
 
 int	hook_f(int key, t_data *param)
 {
+
 	if (!key && !param)
 		exit(0);
 	if (key == 53)
@@ -79,6 +80,7 @@ void	drawing(char *av[])
 	data = (t_data *)malloc(sizeof(t_data));
 	data->map = map_instr(av);
 	data->Count = C_nbr(data->map);
+	data->move_count = 0;
 	data->l = 0;
 	data->Le = ft_strlen(data->map[0]);
 	while(data->map[data->l])
@@ -89,6 +91,15 @@ void	drawing(char *av[])
 	mlx_hook(data->win_ptr, 2, 0, hook_f, data);
 	mlx_loop(data->mlx);
 }
+
+
+
+
+
+
+
+
+
 
 int main(int ac, char *av[])
 {
