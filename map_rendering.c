@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:03:53 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 21:02:48 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:48:50 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void    put_image(t_data **data, char *image_path)
 											 &(*data)->img_height);
 	mlx_put_image_to_window((*data)->mlx, (*data)->win_ptr, (*data)->img,
 							 (*data)->x * 50, (*data)->y * 50);
+	
 }
 
 void render(t_data **data)
