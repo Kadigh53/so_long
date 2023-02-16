@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:43:20 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/15 22:43:29 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:27:18 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ void	errors(int x)
 int main(int ac, char *av[])
 {
 	char	*p;
+
 	if (ac != 2)
 		errors(0);
 	if (!map_parsing(av))
 		errors(1);
-	drawing(av);
-	// mlx_init();
+	if (!back_track())
+		errors(0);
+	if(!drawing(av))
+		errors(0);
 }
