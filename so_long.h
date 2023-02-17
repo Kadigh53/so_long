@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/16 21:03:28 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:54:27 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	move_down(t_data **data);
 void	move_up(t_data **data);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
+char	*ft_itoa(int n);
+int		C_nbr(char *map[]);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 

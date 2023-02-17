@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:03:53 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/16 21:48:50 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:03:50 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void    put_image(t_data **data, char *image_path)
 {
+	char	*str;
+
 	(*data)->img = mlx_xpm_file_to_image((*data)->mlx, image_path,
 											&(*data)->img_width,
 											 &(*data)->img_height);
+	if (!(*data)->img)
+		exit(1);
 	mlx_put_image_to_window((*data)->mlx, (*data)->win_ptr, (*data)->img,
 							 (*data)->x * 50, (*data)->y * 50);
-	
+	str = ft_itoa((*data)->move_count);
+	mlx_string_put((*data)->mlx,(*data)->win_ptr,20,13,0xFF00FF, str);
 }
 
 void render(t_data **data)
