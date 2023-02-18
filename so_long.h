@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/17 17:54:27 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:31:35 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ typedef struct data
 
 char	*map_parsing(char *av);
 
-void	drawing(char *av[]);
+char	*drawing(char *av[]);
 void    render(t_data **data);
+void	errors(int x);
 
 void	move_left(t_data **data);
 void	move_right(t_data **data);

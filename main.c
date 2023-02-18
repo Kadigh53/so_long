@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:43:20 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/17 15:17:16 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:26:35 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	errors(int x)
 {
 	if (x == 0)
 		write(2, "ERROR:invalid numbre of args\n./so_long map.ber",48);
-	if (x == 1)
+	else if (x == 1)
 		write(2, "ERROR:invalid map",18);
+	else if (x == 2)
+		write(2, "ERROR:invalid map the player couldnt finish the game",52);
+	exit(1);
 }
 
 int main(int ac, char *av[])
@@ -28,10 +31,7 @@ int main(int ac, char *av[])
 		errors(0);
 	if (!map_parsing(av))
 		errors(1);
-	else
-		write(1, "the map is valid")
-	// if (!back_track())
-	// 	errors(0);
 	if(!drawing(av))
 		errors(0);
+	return (0);
 }

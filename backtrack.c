@@ -6,18 +6,88 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:22:17 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/17 18:01:26 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:39:53 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int **C_cordone(t_data *data)
+char	**map_instr(char *av[])
 {
-    int C_cordinates[C_nbr(data->map) + 1][2];
+	char	*line;
+	char	*map0;
+	int		fd;
+
+	fd = open(av[1],O_RDONLY);
+	map0=NULL;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		map0 = ft_strjoin(map0, line);
+		free(line);
+	}
+	close(fd);
+	return (ft_split(map0,'\n'));
 }
 
-void    backtrack(t_data *data)
+void	flood_fill(char   ***map, int y, int x)
 {
-    int **C_cordinates = C_cordone(data);
+	if ((*map)[y][x] == '1' || (*map)[y][x] == 'F' || !(*map)[y] || !(*map)[y][x])
+		return ;
+	(*map)[y][x] = 'F';
+	flood_fill(map, y, x + 1);
+	flood_fill(map, y, x - 1);
+	flood_fill(map, y + 1, x);
+	flood_fill(map, y - 1, x);
 }
+
+void    backtrack(char  **av, t_data **data)
+{
+	char **map;
+	int i;
+	int j;
+
+	i = 0;
+	map = map_instr(av);
+	flood_fill(&map, (*data)->cor[0], (*data)->cor[0]);
+	while (map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if (map[i][j] == 'C' || map[i][j] == 'E')
+				return (NULL);
+			j++;
+		}
+		i++;
+	}
+	// free(map);
+	return ((void *)1);
+}
+
+
+// void    backtrack(char  **av)//, t_data **data)
+// {
+// 	char **map;
+// 	map = map_instr(av);
+// 	flood_fill(&map, 4, 13);
+// 	printf("{{%s}\n {%s}\n {%s}\n {%s}\n {%s}\n {%s}}\n\n",(map)[0],(map)[1],(map)[2],(map)[3],(map)[4],(map)[5]);
+// 	int i,j;
+// 	i =0;
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while(map[i][j])
+// 		{
+// 			if (map[i][j] == 'C' || map[i][j] == 'E')
+// 				printf("(%d,%d)NULL\n",j,i);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+// int main(int ac , char **av){
+// 	backtrack(av);
+// }

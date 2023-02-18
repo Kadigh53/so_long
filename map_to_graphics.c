@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/16 22:16:13 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:30:46 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int C_nbr(char *map[])
 	return (count);
 }
 
-void	drawing(char *av[])
+char	*drawing(char *av[])
 {
 	t_data *data;
 
@@ -85,21 +85,18 @@ void	drawing(char *av[])
 	data->Le = ft_strlen(data->map[0]);
 	while(data->map[data->l])
 		data->l++;
+	if (!backtrack(av,&data))
+		errors(2);
 	data->mlx = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx,data->Le*50,data->l*50, "1212");
 	if (!data->mlx || !data->win_ptr)
 		exit(1);
 	render(&data);
+	// mlx_hook(data->win_ptr, 17, 0, hook_x, data);
 	mlx_hook(data->win_ptr, 2, 0, hook_f, data);
 	mlx_loop(data->mlx);
+	return ((void *)1);
 }
-
-
-
-
-
-
-
 
 
 
