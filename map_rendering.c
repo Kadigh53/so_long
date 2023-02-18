@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:03:53 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/17 15:03:50 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/19 00:51:23 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void render(t_data **data)
 		while((*data)->y<(*data)->l)
 		{
 			if ((*data)->map[(*data)->y][(*data)->x] == '1')
-				put_image(data, "./cherjam_hmar.xpm");
+				put_image(data, "./images/cherjam_hmar.xpm");
 			else if ((*data)->map[(*data)->y][(*data)->x] == 'C')
-				put_image(data, "./dollar_collectibles.xpm");
+				put_image(data, "./images/dollar_collectibles.xpm");
 			else if ((*data)->map[(*data)->y][(*data)->x] == 'E')
-				put_image(data, "./bank_exit.xpm");
+				put_image(data, "./images/bank_exit.xpm");
 			else if ((*data)->map[(*data)->y][(*data)->x] == 'P')
 			{
 				(*data)->cor[0] = (*data)->y;
 				(*data)->cor[1] = (*data)->x;
-				put_image(data, "./MnP.xpm");
+				put_image(data, "./images/MnP.xpm");
 			}
 			(*data)->y++;
 		}
