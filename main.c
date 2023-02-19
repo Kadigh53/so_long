@@ -6,7 +6,7 @@
 /*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:43:20 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/19 00:29:08 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:16:28 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	errors(int x)
 
 int main(int ac, char *av[])
 {
-	char	*p;
-
 	if (ac != 2)
 		errors(0);
 	if (!map_parsing(av[1]))
