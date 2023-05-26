@@ -3,15 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aaoutem- <aaoutem-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 18:49:08 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/17 15:10:12 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:51:04 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "get_next_line.h"
+
+void	count_eandp(char **map)
+{
+	int	i;
+	int	j;
+	int p;
+	int e;
+
+	i = -1;
+	e = 0;
+	p = 0;
+	while (map[++i])
+	{
+		j = 0;
+		while (map[i][j++])
+		{
+			if (map[i][j - 1] == 'P')
+				p++;
+			else if (map[i][j - 1] == 'E')
+				e++;
+		}
+	}
+	if (e != 1 || p != 1)
+		errors(1);
+}
 
 char	*borders_checking(char *line)
 {
@@ -22,15 +46,15 @@ char	*borders_checking(char *line)
 		return (NULL);
 	while (line[i] == '1')
 		i++;
-	if (line[i + 1] == '\0')
+	if (line[i] == '\n')
+		i++;
+	if (line[i] == '\0')
 		return ((void *)1);
 	return (NULL);
 }
 
 char	*lines_checking(char *line, int len)
 {
-	static int	ep;
-	static int	c;
 	int			i;
 
 	i = 0;
@@ -41,44 +65,37 @@ char	*lines_checking(char *line, int len)
 	while (line[i] == '0' || line[i] == '1' || line[i] == 'C'
 		|| line[i] == 'E' || line[i] == 'P' || line[i] == '\n')
 	{
-		if (line[i] == 69)
-			ep++;
-		if (line[i] == 80)
-			ep++;
-		if (line[i] == 'C')
-			c++;
 		i++;
 	}
-	if ((!line[i] && ep <= 2) && c > 0)
+	if (!line[i])
 		return ((void *)1);
 	return (NULL);
 }
 
 char	*map_parsing(char *av)
 {
-	int			fd;
-	int			len;
-	char		*line;
-	char		*buffer;
+	t_vars	vars;
+	char	*line;
 
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
+	vars.fd = open(av, O_RDONLY);
+	if (vars.fd < 0)
 		return (NULL);
-	line = get_next_line(fd);
+	line = get_next_line(vars.fd);
 	if (!borders_checking(line))
 		return (NULL);
-	len = ft_strlen(line);
+	vars.len = ft_strlen(line);
 	while (1)
 	{
-		line = get_next_line(fd);
+		free(line);
+		line = get_next_line(vars.fd);
 		if (!line)
 			break ;
-		buffer = line; // free(line);
-		if (!lines_checking(line, len))
+		vars.buffer = line;
+		if (!lines_checking(line, vars.len))
 			return (NULL);
 	}
-	if (!borders_checking(buffer))
+	if (!borders_checking(vars.buffer))
 		return (NULL);
-	close(fd);
+	close(vars.fd);
 	return ((void *)1);
 }

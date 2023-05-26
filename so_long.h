@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aaoutem- <aaoutem-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 19:00:33 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/19 00:28:29 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:46:20 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@
 # include <mlx.h>
 # include "get_next_line.h"
 
-typedef struct data 
+typedef struct s_data		t_data ;
+typedef struct s_pars_vars	t_vars;
+
+struct s_data 
 {
 	void	*mlx;
 	void	*win_ptr;
@@ -31,38 +34,33 @@ typedef struct data
 	int		x;
 	int		y;
 	int		l;
-	int		Le;
+	int		le;
 	int		cor[2];
-	int		Count;
+	int		count;
 	int		move_count;
-} t_data;
+};
+
+struct s_pars_vars
+{
+	int			fd;
+	int			len;
+	char		*buffer;
+};
 
 char	*map_parsing(char *av);
-// char	**map_instr(char *av[]);
 void	drawing(char *av[]);
-void    render(t_data **data);
+void	render(t_data **data);
 void	errors(int x);
-char	*backtrack(char  **av);
-
+char	*backtrack(char **av);
 void	move_left(t_data **data);
 void	move_right(t_data **data);
 void	move_down(t_data **data);
 void	move_up(t_data **data);
-
 char	*get_next_line(int fd);
-
 char	**ft_split(char *s, char c);
-char	*ft_itoa(int n);
-
-int		C_nbr(char *map[]);
-
+int		c_nbr(char *map[]);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-
-
-
-
-// char	*ft_substr(char *s, unsigned int start, size_t len);
-// char	*ft_strjoin(char *s1, char *s2);
+void	free_map(char	**map);
+void	count_eandp(char **map);
 
 #endif

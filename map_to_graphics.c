@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_to_graphics.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaoutem- <aaoutem-@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aaoutem- <aaoutem-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:11:37 by aaoutem-          #+#    #+#             */
-/*   Updated: 2023/02/19 00:31:44 by aaoutem-         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:27:26 by aaoutem-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 char	**map_instr(char *av[])
 {
@@ -19,39 +18,39 @@ char	**map_instr(char *av[])
 	char	*map0;
 	int		fd;
 
-	fd = open(av[1],O_RDONLY);
-	map0=NULL;
+	fd = open(av[1], O_RDONLY);
+	map0 = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		map0 = ft_strjoin(map0, line);
 		free(line);
 	}
 	close(fd);
-	return (ft_split(map0,'\n'));
+	free(line);
+	return (ft_split(map0, '\n'));
 }
 
 int	hook_f(int key, t_data *param)
 {
-
-	if (!key && !param)
+	if (!param)
 		exit(0);
 	if (key == 53)
 		exit(0);
-	if (key == 0)
+	else if (key == 0)
 		move_left(&param);
-	if (key == 2)
+	else if (key == 2)
 		move_right(&param);
-	if (key == 1)
+	else if (key == 1)
 		move_down(&param);
-	if (key == 13)
+	else if (key == 13)
 		move_up(&param);
-	return 0;
+	return (0);
 }
 
-int C_nbr(char *map[])
+int	c_nbr(char *map[])
 {
 	int	i;
 	int	j;
@@ -59,7 +58,7 @@ int C_nbr(char *map[])
 
 	i = 0;
 	count = 0;
-	while(map[i])
+	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
@@ -73,24 +72,36 @@ int C_nbr(char *map[])
 	return (count);
 }
 
+int	hook_x(int key, t_data *param)
+{
+	if (param || key)
+		exit(0);
+	exit(0);
+}
+
 void	drawing(char *av[])
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	data->map = map_instr(av);
-	data->Count = C_nbr(data->map);
+	data->count = c_nbr(data->map);
+	if (data->count <= 0)
+		errors(1);
+	count_eandp(data->map);
 	data->move_count = 0;
 	data->l = 0;
-	data->Le = ft_strlen(data->map[0]);
-	while(data->map[data->l])
+	data->le = ft_strlen(data->map[0]);
+	while (data->map[data->l])
 		data->l++;
 	data->mlx = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx,data->Le*50,data->l*50, "1212");
+	data->win_ptr = mlx_new_window(data->mlx, data->le * 50, data->l * 50, "2");
 	if (!data->mlx || !data->win_ptr)
 		exit(1);
 	render(&data);
-	// mlx_hook(data->win_ptr, 17, 0, hook_x, data);
+	mlx_hook(data->win_ptr, 17, 0, hook_x, data);
 	mlx_hook(data->win_ptr, 2, 0, hook_f, data);
 	mlx_loop(data->mlx);
+	free_map(data->map);
+	free(data);
 }
